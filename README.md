@@ -15,11 +15,11 @@ We can see that carriers with least delay ratio are OH (Comair Inc.) and YV (Mes
 
 Please help me improve this visualisation. You may want to think along these lines:
 
--What do you notice in the visualization?
--What questions do you have about the data?
--What relationships do you notice?
--What do you think is the main takeaway from this visualization?
--Is there something you don’t understand in the graphic?
+*What do you notice in the visualization?
+*What questions do you have about the data?
+*What relationships do you notice?
+*What do you think is the main takeaway from this visualization?
+*Is there something you don’t understand in the graphic?
 
 ##Resources
 
