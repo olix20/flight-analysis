@@ -1,1 +1,194 @@
-<h1> hello </h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+
+    .linelable {
+           font-family: sans-serif;
+           font-size: 12px;
+           color:black;
+           opacity: 0.7;
+         }
+
+    </style>
+    <meta charset="utf-8">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
+
+
+    <script type="text/javascript">
+      function draw(data) {
+
+      /*
+        D3.js setup code
+      */
+
+          "use strict";
+          var margin = 75,
+              width = 1200 - margin,
+              height = 600 - margin;
+
+
+          var svg = d3.select("body")
+            .append("svg")
+              .attr("width", width + margin)
+              .attr("height", height + margin)
+            .append('g')
+                .attr('class','chart');
+
+      /*
+        Dimple.js Chart construction code
+      */
+
+      var myChart = new dimple.chart(svg, data);
+      var x = myChart.addCategoryAxis("x", " month");
+		  x.title = "Month" ;
+
+      var y1 = myChart.addMeasureAxis("y", " arr_delay");
+		  y1.title= "Delay (minutes)";
+
+		  var y2 = myChart.addMeasureAxis(y1, " carrier_delay");
+		  var y3 = myChart.addMeasureAxis(y1, "nas_delay");
+      var y4 = myChart.addMeasureAxis(y1, "security_delay");
+      var y5 = myChart.addMeasureAxis(y1, "late_aircraft_delay");
+      var y6 = myChart.addMeasureAxis(y1, "weather_delay");
+
+
+      var lines = myChart.addSeries("Total Delay", dimple.plot.line, [x,y1]);
+		  var lines2 = myChart.addSeries("Carrier Delay", dimple.plot.line, [x,y2]);
+		  var lines3 = myChart.addSeries("NAS Delay", dimple.plot.line, [x,y3]);
+      var lines4 = myChart.addSeries("Security Delay", dimple.plot.line, [x,y4]);
+      var lines5 = myChart.addSeries("Late Aircraft Delay", dimple.plot.line, [x,y5]);
+      var lines6 = myChart.addSeries("Weather Delay", dimple.plot.line, [x,y6]);
+
+		  lines.aggregate = dimple.aggregateMethod.avg;
+      lines2.aggregate = dimple.aggregateMethod.avg;
+      lines3.aggregate = dimple.aggregateMethod.avg;
+      lines4.aggregate = dimple.aggregateMethod.avg;
+      lines5.aggregate = dimple.aggregateMethod.avg;
+      lines6.aggregate = dimple.aggregateMethod.avg;
+
+
+		  lines.lineMarkers = true;
+		  lines2.lineMarkers = true;
+		  lines3.lineMarkers = true;
+      lines4.lineMarkers = true;
+      lines5.lineMarkers = true;
+      lines6.lineMarkers = true;
+
+      myChart.assignColor("Total Delay", "black");
+      myChart.assignColor("Carrier Delay", "lightblue");
+      myChart.assignColor("NAS Delay", "lightblue");
+      myChart.assignColor("Security Delay", "lightblue");
+      myChart.assignColor("Late Aircraft Delay", "lightblue");
+      myChart.assignColor("Weather Delay", "lightblue");
+
+
+
+          myChart.draw();
+
+  /*
+  Adding line labels (legend)
+
+  */
+
+  //total delay
+  svg.append('text').
+  attr("x",
+  d3.select('#dimple-total-delay-12----marker')[0][0].cx.baseVal.value+15).
+  attr("y",
+  d3.select('#dimple-total-delay-12----marker')[0][0].cy.baseVal.value)
+  .text("Total Delay")
+  .attr("class","linelable");
+
+
+  //carrier delay
+  svg.append('text').
+  attr("x",
+  d3.select('#dimple-carrier-delay-12----marker')[0][0].cx.baseVal.value+15).
+  attr("y",
+  d3.select('#dimple-carrier-delay-12----marker')[0][0].cy.baseVal.value)
+  .text("Carrier Delay")
+  .attr("class","linelable");
+
+
+  //NAS delay
+  svg.append('text').
+  attr("x",
+  d3.select('#dimple-nas-delay-12----marker')[0][0].cx.baseVal.value+15).
+  attr("y",
+  d3.select('#dimple-nas-delay-12----marker')[0][0].cy.baseVal.value)
+  .text("NAS Delay")
+  .attr("class","linelable");
+
+
+  //Security delay
+  svg.append('text').
+  attr("x",
+  d3.select('#dimple-security-delay-12----marker')[0][0].cx.baseVal.value+15).
+  attr("y",
+  d3.select('#dimple-security-delay-12----marker')[0][0].cy.baseVal.value)
+  .text("Security Delay")
+  .attr("class","linelable");
+
+  //Late Aircraft delay
+  svg.append('text').
+  attr("x",
+  d3.select('#dimple-late-aircraft-delay-12----marker')[0][0].
+  cx.baseVal.value+15).
+  attr("y",
+  d3.select('#dimple-late-aircraft-delay-12----marker')[0][0].
+  cy.baseVal.value)
+  .text("Late Aircraft Delay")
+  .attr("class","linelable");
+
+
+
+
+  //Weather Delay
+  svg.append('text').
+  attr("x",
+  d3.select('#dimple-weather-delay-12----marker')[0][0].cx.baseVal.value+15).
+  attr("y",
+  d3.select('#dimple-weather-delay-12----marker')[0][0].cy.baseVal.value)
+  .text("Weather Delay")
+  .attr("class","linelable");
+
+
+
+
+        };
+
+    </script>
+  </head>
+
+
+<body>
+
+<h1>US Domestic Flight Delays in 2014</h1>
+<p>
+  This chart shows the average arrival delays for US domestic flights in 2014.
+  We can see how the delay pattern develops through out the year,
+  and how different types of delay contribute to the toal delay.
+</p>
+<p>
+  We see a consistent pattern that the least chance of
+  a delay is when you travel in April or September.
+  The peaks are June-August and December-January.
+</p>
+
+
+  <script type="text/javascript">
+  /*
+    Use D3 (not dimple.js) to load the TSV file
+    and pass the contents of it to the draw function
+    */
+  //d3.tsv("world_cup.tsv", draw);
+
+  d3.csv("2014.csv", function(data) {
+  console.log(data[0]);
+  draw(data);
+});
+  </script>
+</body>
+</html>
