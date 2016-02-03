@@ -14,7 +14,8 @@ We can see a general pattern where peak delays happen in summer/winter holidays.
 Feedback 1: 
 it's hard to distinguish carrier and late aircraft delay > solution: used light green color for carrier delay. 
 
-
+Feedback 2: 
+it takes a long time to show the data, and i'm not sure what's going on > Showing a spinner to give a sense of progress
 
 
 Please help me improve this visualisation. You may want to think along these lines:
