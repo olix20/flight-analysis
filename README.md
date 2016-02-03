@@ -17,18 +17,8 @@ it's hard to distinguish carrier and late aircraft delay > solution: used light 
 Feedback 2: 
 it takes a long time to show the data, and i'm not sure what's going on > Showing a spinner to give a sense of progress
 
-
-Please help me improve this visualisation. You may want to think along these lines:
-
-*What do you notice in the visualization?
-
-*What questions do you have about the data?
-
-*What relationships do you notice?
-
-*What do you think is the main takeaway from this visualization?
-
-*Is there something you don’t understand in the graphic?
+Feedback 3: 
+the y axis is showing seconds which is hard to get a gut sense > convert to hours (this also makes it easier to distinguish carrier and late aircraft delay so I'm undoing what i did for feedback 1 (all sub-delays will be in blue)).
 
 
 ##Resources
@@ -36,4 +26,3 @@ Please help me improve this visualisation. You may want to think along these lin
 Dataset (Jan 2014 - Dec 2014): http://www.transtats.bts.gov/OT_Delay/OT_DelayCause1.asp?pn=1
 
 EDA with R
-

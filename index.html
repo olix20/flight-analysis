@@ -45,7 +45,7 @@
 		  x.title = "Month" ;
 
       var y1 = myChart.addMeasureAxis("y", " arr_delay");
-		  y1.title= "Delay (minutes)";
+		  y1.title= "Delay (hours)";
 
 		  var y2 = myChart.addMeasureAxis(y1, " carrier_delay");
 		  var y3 = myChart.addMeasureAxis(y1, "nas_delay");
@@ -77,7 +77,7 @@
       lines6.lineMarkers = true;
 
       myChart.assignColor("Total Delay", "black");
-      myChart.assignColor("Carrier Delay", "lightgreen");
+      myChart.assignColor("Carrier Delay", "lightblue");
       myChart.assignColor("NAS Delay", "lightblue");
       myChart.assignColor("Security Delay", "lightblue");
       myChart.assignColor("Late Aircraft Delay", "lightblue");
@@ -225,7 +225,20 @@ target[0].appendChild(spinner.el);
   //d3.tsv("world_cup.tsv", draw);
 
 
-  d3.csv("2014.csv", function(data) {
+  d3.csv("2014.csv",
+  //preprocessing data: converting seconds to hours
+  function(d){
+d[" arr_delay"] = d[" arr_delay"] /3600 ;
+d[" carrier_delay"] = d[" carrier_delay"] /3600 ;
+d["nas_delay"] = d["nas_delay"] /3600 ;
+d["security_delay"] = d["security_delay"] /3600 ;
+d["late_aircraft_delay"] = d["late_aircraft_delay"] /3600 ;
+d["weather_delay"] = d["weather_delay"] /3600 ;
+
+return d;
+  },
+
+   function(data) {
   console.log(data[0]);
   spinner.stop();
   draw(data);
